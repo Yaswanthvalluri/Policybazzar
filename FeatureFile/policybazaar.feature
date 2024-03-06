@@ -3,7 +3,7 @@ Feature: Policy Bazaar
   Scenario Outline: Lowest travel insurance for students in policybazzar site
     Given user is on the policy bazaar site
     When user click on travel insurance
-    And user selects the destination "<Destination Name>"
+    And user selects the destination "<Destination Name>" 
     And user selects the trip duration
     And user selects the count and age of travellers
     And user submit the medical condition survey

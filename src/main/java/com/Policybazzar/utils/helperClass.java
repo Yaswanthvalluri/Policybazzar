@@ -23,34 +23,32 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
  
 
- 
 public class helperClass {
 		 
 		public static WebDriver driver;
-		static Properties p;
-		// static Logger logger;
- 
+		static Properties p; 
 			
 			public  static WebDriver initializeBrowser() throws IOException
 			{
-				getProperties();
 				
 				if(getProperties().getProperty("execution_env").equalsIgnoreCase("remote"))
 				{
-					DesiredCapabilities capabilities = new DesiredCapabilities();
+					DesiredCapabilities capabilities = new DesiredCapabilities();				//set the browser peoperties to automate the webapplications 
 					//os
-					if (getProperties().getProperty("os").equalsIgnoreCase("windows")) {
-					    capabilities.setPlatform(Platform.WIN11);
-					} else if (getProperties().getProperty("os").equalsIgnoreCase("mac")) {
+					if (getProperties().getProperty("os").equalsIgnoreCase("windows")) {		//getproperty used to get element properties from file such as text 
+					    capabilities.setPlatform(Platform.WIN11);						//represents the known and supported platform that webdriver runs 
+					} 
+					else if (getProperties().getProperty("os").equalsIgnoreCase("mac")) {		//equalsIgnoreCase is a 
 					    capabilities.setPlatform(Platform.MAC);
-					} else {
+					} 
+					else {
 					    System.out.println("No matching OS..");
 					      }
 					
 					//browser 
 					switch (getProperties().getProperty("browser").toLowerCase()) {
 					    case "chrome":
-					        capabilities.setBrowserName("chrome");
+					        capabilities.setBrowserName("chrome");		//use to set the browser name on which test should be executed 
 					        break;
 					    case "edge":
 					        capabilities.setBrowserName("MicrosoftEdge");
@@ -61,7 +59,7 @@ public class helperClass {
 					    default:
 					        System.out.println("No matching browser");
 					     }
-			       driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capabilities);
+			       driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capabilities);			//remotewebdriver impletements webdriver interface to execute the test cases
 				}
 				else if(getProperties().getProperty("execution_env").equalsIgnoreCase("local"))
 					{
@@ -87,13 +85,13 @@ public class helperClass {
 				 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 				 return driver;
 			}
-			public static WebDriver getDriver() {
+			public static WebDriver getDriver() {			//use to retrieve instance of webdriver 
 				return driver;
 			}
 		 
 		public static Properties getProperties() throws IOException
 		{		 
-		    FileReader file=new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\config.properties");
+		    FileReader file=new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\config.properties");		//set the 
 		    p=new Properties();
 			p.load(file);
 			return p;
